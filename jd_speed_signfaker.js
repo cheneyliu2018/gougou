@@ -184,7 +184,7 @@ async function taskList() {
               data = JSON.parse(data);
               for (let task of data.data) {
                 $.taskName = task.taskInfo.mainTitle
-                if($.index>1&&$.taskName=="看视频赚金币"){
+                if($.index>2&&$.taskName=="看视频赚金币"){
                     continue
                 }
                 if (task.taskInfo.status === 0) {
