@@ -77,6 +77,8 @@ let do_syj = process.env.JD_SYJ ? process.env.JD_SYJ : false;
         cookie = cookiesArr[i];
         $.tuanList = [];
         await main()
+        if ($.index<=2&&$.total<3&&!$.tuanList.length) 
+            continue
         if (!$.tuanList.length) 
             break
         $.log($.tuanList.length)
