@@ -24,6 +24,8 @@ cron "20 4,16 * * *" script-path=jd_fruit_help.js,tag=东东农场内部互助
 export DO_TEN_WATER_AGAIN="" 默认再次浇水
 
 */
+//js脚本开头加入这段代码
+require('global-agent/bootstrap');
 const $ = new Env('东东农场内部水滴互助');
 let cookiesArr = [],
     cookie = '',
