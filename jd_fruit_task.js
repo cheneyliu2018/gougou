@@ -24,6 +24,7 @@ cron "5 6-18/6 * * *" script-path=jd_fruit_task.js,tag=东东农场日常任务
 export DO_TEN_WATER_AGAIN="" 默认再次浇水
 
 */
+//js脚本开头加入这段代码
 require('global-agent/bootstrap');
 const $ = new Env('东东农场日常任务');
 let cookiesArr = [],
@@ -45,7 +46,7 @@ let message = '',
     option = {},
     isFruitFinished = false;
 const retainWater = $.isNode() ? (process.env.retainWater ? process.env.retainWater : 100) : ($.getdata('retainWater') ? $.getdata('retainWater') : 100); //保留水滴大于多少g,默认100g;
-let jdNotify = true; //是否关闭通知，false打开通知推送，true关闭通知推送
+let jdNotify = false; //是否关闭通知，false打开通知推送，true关闭通知推送
 let jdFruitBeanCard = false; //农场使用水滴换豆卡(如果出现限时活动时100g水换20豆,此时比浇水划算,推荐换豆),true表示换豆(不浇水),false表示不换豆(继续浇水),脚本默认是浇水
 let randomCount = $.isNode() ? 20 : 5;
 const JD_API_HOST = 'https://api.m.jd.com/client.action';
@@ -80,17 +81,13 @@ let lnrun = 0;
 						$.UA = require('./USER_AGENTS').UARAM();
             $.retry = 0;
             lnrun++;
-            try{
-                await jdFruit();
-            }catch{
-                
-            }
+            await jdFruit();
 						if (lnrun == 3) {
 										console.log(`\n【访问接口次数达到3次，休息一分钟.....】\n`);
-										await $.wait(1 * 1000);
+										await $.wait(60 * 1000);
 										lnrun = 0;
 						}
-						await $.wait(1 * 1000);
+						await $.wait(30 * 1000);
         }
     }
     if ($.isNode() && allMessage && $.ctrTemp) {
