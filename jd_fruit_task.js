@@ -1352,7 +1352,7 @@ function TotalBean() {
     })
 }
 
-function request(function_id, body = {}, timeout = 1000) {
+function request(function_id, body = {}, timeout = 10000) {
     return new Promise(resolve => {
         setTimeout(() => {
             $.get(taskUrl(function_id, body), (err, resp, data) => {
